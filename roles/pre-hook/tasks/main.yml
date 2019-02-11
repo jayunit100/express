@@ -1,3 +1,6 @@
 ---
 
 - debug: msg="running pre_hook():"
+
+- include: redhat.yml
+  when: ansible_distribution == 'RedHat'
