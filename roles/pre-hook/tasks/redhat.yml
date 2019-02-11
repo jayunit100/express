@@ -1,0 +1,20 @@
+---
+
+- name: check rhel subsciprtion
+  become: yes
+  shell: "subscription-manager status | grep Current"
+  register: rhel_subscription_check
+  failed_when: rhel_subscription_check.rc != 1 and rhel_subscription_check.rc != 0
+
+
+- name: register rhel machines
+  become: yes
+  redhat_subscription:
+    state: present
+    username: "{{ rhel_reg_username }}"
+    password: "{{ rhel_reg_password }}"
+    autosubscribe: true
+  when: rhel_subscription_check.stdout == ""
+
+- name: RedHat - Enable rhel optional rpms repo ansible ver less than 2.5
+  shell: "subscription-manager repos --enable=rhel-7-server-optional-rpms"

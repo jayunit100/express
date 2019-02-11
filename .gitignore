@@ -8,7 +8,6 @@ lib/pf9-builder/hosts
 lib/INSTALL.log
 inventory/hosts
 log/*.log
-roles/pre-hook
 roles/post-hook
 *.pyc
 *.swp
