@@ -6,7 +6,6 @@
   register: rhel_subscription_check
   failed_when: rhel_subscription_check.rc != 1 and rhel_subscription_check.rc != 0
 
-
 - name: register rhel machines
   become: yes
   redhat_subscription:
